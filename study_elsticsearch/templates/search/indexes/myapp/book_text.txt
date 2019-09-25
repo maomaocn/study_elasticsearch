@@ -1,0 +1,3 @@
+{{ object.id}}
+{{ object.bookname}}
+{{object.book_type}}
