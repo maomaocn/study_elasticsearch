@@ -1,0 +1,5 @@
+本项目需要自定义自己的数据库，需要安装的拓包可以使用pip install -r requirements.txt ,如果不行pip-->pip3,elasticsearch基于docker 镜像 具体怎么运行可以参考链接：https://blog.csdn.net/sunchaoyiA/article/details/81351012 这个博客里面步骤有省略 需要先跑起来把配置文件从容器中拷贝出来，docker run -dti --network=host --name=elasticsearch -v /home/python/elasticsearch-2.4.6/config:/usr/share/elasticsearch/config delron/elasticsearch-ik:2.4.6-1.0
+ 
+这个命令里面的 /home/python/elasticsearch-2.4.6/config 是从容器中拷贝出来的位置，里面的配置文件需要修改一下，把里面的network.host 改为你自己本地IP 然后就可以把刚才跑起来的容器删除掉，使用docker run -dti --network=host --name=elasticsearch -v /home/python/elasticsearch-2.4.6/config:/usr/share/elasticsearch/config delron/elasticsearch-ik:2.4.6-1.0
+ 
+把elasticsearch镜像跑起来。然后回到项目把数据恢复到数据库，在进行手动创建索引，python manage.py rebuild_index ,不报错就可以运行项目测试了。
